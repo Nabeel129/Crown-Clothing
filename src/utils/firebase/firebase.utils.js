@@ -1,6 +1,6 @@
 
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithRedirect, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithRedirect, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -49,7 +49,7 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInfo) => {
             console.log('Error creating user', error.message);
         }
     }
-    console.log(userDocRef);
+    // console.log(userDocRef);
 }
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
@@ -63,5 +63,6 @@ export const signInUserWithEmailAndPassword = async (email, password) => {
 
     return await signInWithEmailAndPassword(auth, email, password)
 }
+export const signOutUser = async () => { await signOut(auth); }
 
 

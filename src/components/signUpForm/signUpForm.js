@@ -1,9 +1,11 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useContext, useState } from 'react'
+import { UserContext } from '../../contexts/context';
 
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils'
 import Button from '../button/button';
 import FormInput from '../formInput/formInput';
 import './signUpForm.styles.scss'
+
 
 
 const defaultFormFields = {
@@ -17,6 +19,8 @@ const SignUpForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { displayName, email, password, confirmPassword } = formFields;
 
+    const { setCurrentUser } = useContext(UserContext);
+
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormFields({ ...formFields, [name]: value })
@@ -28,10 +32,9 @@ const SignUpForm = () => {
             alert("Password and Confirm Password fields are not the same");
         }
         try {
-            const response = await createAuthUserWithEmailAndPassword(email, password);
-
-            await createUserDocumentFromAuth(response.user, { displayName })
-
+            const { user } = await createAuthUserWithEmailAndPassword(email, password);
+            setCurrentUser(user)
+            await createUserDocumentFromAuth(user, { displayName })
             resetFormFields();
         }
         catch (error) {
