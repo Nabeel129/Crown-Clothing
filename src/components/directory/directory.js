@@ -1,5 +1,5 @@
 import './directory-style.scss'
-import CategoryItem from '../category-item/categoryItem'
+import DirectoryItem from '../category-item/directoryItem'
 import React from 'react'
 
 const Directory = (props) => {
@@ -9,7 +9,7 @@ const Directory = (props) => {
             {
                 categories.map((category) => {
                     return (
-                        <CategoryItem key={category.id} category={category} />
+                        <DirectoryItem key={category.id} category={category} />
                     )
                 }
                 )
