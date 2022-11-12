@@ -1,9 +1,9 @@
 import { Fragment, useContext } from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { ReactComponent as CrownLogo } from '../../assets/crown.svg';
 import { UserContext } from '../../contexts/user-context';
 import { CartContext } from '../../contexts/cart-context';
-import './navigation.style.scss';
+import { NavigationDiv, LogoContainer, NavLinks, NavLinksContainer } from './navigation.style.js';
 import { signOutUser } from '../../utils/firebase/firebase.utils';
 import CartIcon from '../../components/cart-icon/cart-icon';
 import CartDropdown from '../../components/cart-drop-down/cart-drop-down';
@@ -19,21 +19,21 @@ const Navigation = () => {
 
     return (
         <Fragment>
-            <div className="navigation">
-                <Link className="logo-container" to='/'>
+            <NavigationDiv>
+                <LogoContainer to='/'>
                     <CrownLogo className="logo" />
-                </Link>
-                <div className="nav-links-container">
-                    <Link className='nav-link' to='/shop' >Shop</Link>
-                    <Link className='nav-link' to='/contact' >Contact</Link>
+                </LogoContainer>
+                <NavLinksContainer>
+                    <NavLinks to='/shop' >Shop</NavLinks>
+                    <NavLinks to='/contact' >Contact</NavLinks>
                     {currentUser ?
-                        (<span className='nav-link' onClick={signOutUser}>Sign Out</span>) :
-                        (<Link className='nav-link' to='/auth' >Sign In</Link>)
+                        (<NavLinks as='span' onClick={signOutUser}>Sign Out</NavLinks>) :
+                        (<NavLinks to='/auth' >Sign In</NavLinks>)
                     }
                     <CartIcon />
-                </div>
+                </NavLinksContainer>
                 {isCartOpen && <CartDropdown />}
-            </div>
+            </NavigationDiv>
             <Outlet />
         </Fragment >
     );

@@ -4,7 +4,7 @@ import React, { Fragment, useState } from 'react'
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils'
 import Button from '../button/button';
 import FormInput from '../formInput/formInput';
-import './signUpForm.styles.scss'
+import { H2, SignUpContainer } from './signUpForm.styles.js'
 
 
 
@@ -52,8 +52,8 @@ const SignUpForm = () => {
 
     return (
         <Fragment>
-            <div className="sign-up-container">
-                <h2>Don't have an Account?</h2>
+            <SignUpContainer>
+                <H2>Don't have an Account?</H2>
                 <span>SignUp with you Email and Password</span>
                 <form onSubmit={handleSubmit} >
                     <FormInput label='Display Name' type="text" required onChange={handleChange} name='displayName' value={displayName} />
@@ -62,7 +62,7 @@ const SignUpForm = () => {
                     <FormInput label='Confirm Password' type="password" required onChange={handleChange} name='confirmPassword' value={confirmPassword} />
                     <Button type='submit'>Submit</Button>
                 </form>
-            </div>
+            </SignUpContainer>
         </Fragment>
     )
 }

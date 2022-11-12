@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import SignInForm from '../../components/signInForm/signInForm';
 import SignUpForm from '../../components/signUpForm/signUpForm';
-import './authentication.styles.scss';
+import { AuthenticationContainer } from './authentication.styles.js';
 
 // import { useEffect } from 'react';
 // import { getRedirectResult } from 'firebase/auth';
@@ -11,10 +11,10 @@ const Authentication = () => {
 
     return (
         <Fragment>
-            <div className="authentication-container">
+            <AuthenticationContainer>
                 <SignInForm />
                 <SignUpForm />
-            </div>
+            </AuthenticationContainer>
         </Fragment>
     );
 }

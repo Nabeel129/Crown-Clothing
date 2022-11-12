@@ -1,8 +1,8 @@
 import React, { Fragment, useState } from 'react'
 import { signInWithGooglePopup, signInUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils'
-import Button from '../button/button';
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button';
 import FormInput from '../formInput/formInput';
-import './signInForm.styles.scss'
+import { SignInContainer, H2, BtnContainer } from './signInForm.styles.js'
 // import { UserContext } from '../../contexts/context';
 
 
@@ -60,18 +60,18 @@ const SignInForm = () => {
     }
     return (
         <Fragment>
-            <div className="sign-up-container">
-                <h2>Already have an Account?</h2>
+            <SignInContainer>
+                <H2>Already have an Account?</H2>
                 <span>SignIn with you Email and Password</span>
                 <form onSubmit={handleSubmit} >
                     <FormInput label='Email' type="email" required onChange={handleChange} name='email' value={email} />
                     <FormInput label='Password' type="password" required onChange={handleChange} name='password' value={password} />
-                    <div className="btn-container">
+                    <BtnContainer>
                         <Button type='submit'>Sign In</Button>
-                        <Button buttonType='google' onClick={LogGoogleUser} >Google Sign In</Button>
-                    </div>
+                        <Button buttonType={BUTTON_TYPE_CLASSES.google} onClick={LogGoogleUser} >Google Sign In</Button>
+                    </BtnContainer>
                 </form>
-            </div>
+            </SignInContainer>
         </Fragment>
     )
 }
